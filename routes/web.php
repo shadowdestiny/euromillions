@@ -20,8 +20,6 @@ $router->get('/key', function () {
 });
 
 
-/*$router->group(['middleware' => []], function () use ($router) {
-    $router->get('/get_results', ['uses' => function(){
-        die("hola");
-    }]);
-});*/
+$router->group(['middleware' => []], function () use ($router) {
+    $router->get('/get_results', ['uses' => 'EuromillionsDrawController@getResult']);
+});
