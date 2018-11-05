@@ -25,8 +25,7 @@ O simplemente correr docker que tenga un contenedor de php mayor a PHP7
 
 3) Puedes instalar un cliente para probar todos los *end-points*. 
 [Postman](https://www.getpostman.com/) es una buena opcion, 
-aplicación gratuita para Windows, GNU/Linux y OS X. Después de instalar Postman se puede **importar** una colección
-de *end-points* que se creo para este test en: `<REPO>/lmarin/Project Test API.postman_collection`.
+aplicación gratuita para Windows, GNU/Linux y OS X. Después de instalar Postman se puede **realizar pruebas** con el *end-points* llamado **get_results**.
 
 Una vez importada se podra tener acceso a todos los servicios de Lumen como en la siguiente imagen:
 
