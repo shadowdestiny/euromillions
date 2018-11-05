@@ -32,6 +32,68 @@ Una vez importada se podra tener acceso a todos los servicios de Lumen como en l
 
 ![Postman](/images/postman.png)
 
+# La ruta visible de la prueba se encuentra en la siguiente ruta:
+## a) Backend: 
+https://euromillions-backend.herokuapp.com/get_results
+
+Lumen es un proyecto diseñado para hacer o realizar servicios RESTFullAPI con el objetivo de que sean consumidos por lun cliente. En esta prueba se uso una clase que ya forma parte del core de *LUMEN*, por el cual puede realizar cache mediante minutos configurables.
+
+```
+EuromillionsDrawController
+
+$euromillions = Cache::remember('usersTable', 1, function() {
+    return EuromillionsDraw::all()->first();
+});
+
+## por cada minuto
+```
+
+
+## b) Frontend (Angular6) transpilado dentro de php para el servidor de heroku.
+https://euromillions-frontend.herokuapp.com
+
+Este cliente basado en Angular 6 es un SPA (single page aplication) que consulta al servicio que ofrece *https://euromillions-backend.herokuapp.com/get_results* en *Lumen*. si el servidor principal (https://www.magayo.com/api/results.php?api_key=Qs538dw5akaBasBmLd&game=euromillions) no responde, se opta por encontrar al segundo servidor (https://euromillions-backend.herokuapp.com/get_results). Esto se realiza mediante el siguente algoritmo en typescript en Angular:
+
+```
+this._resultsServices.get().subscribe(
+        (data: Results) => {
+            if (data.error === 0) {
+              this.results = data;
+              this.format(data.results);
+              this.formatDate(data.draw);
+            } else {
+              this.otherService();
+            }
+        },
+        err => {
+            console.log(err);
+            this.otherService();
+        },
+        () => {
+            console.log('completed');
+        }
+    );
+  }
+
+  otherService() {
+    this._resultsServices.getOtherService().subscribe(
+      (data: Results) => {
+        this.results = data;
+        this.format(data.results);
+        this.formatDate(data.draw);
+      },
+      err2 => {
+        console.log(err2);
+      },
+      () => {
+        console.log('completed');
+      }
+    );
+  }
+```
+Los fuentes de esta seccion se puede ver en el siguiente repositorio:
+https://github.com/shadowdestiny/angular-6-practica/blob/master/src/app/public/millon/millon.component.ts
+
 
 ## Instalación para Desarrollo
 
@@ -90,7 +152,7 @@ $euromillions = Cache::remember('usersTable', 1, function() {
 ## por cada minuto
 ```
 
-[Cache](/images/cache.png)
+![Cache](/images/cache.png)
 
 
 ## Lumen PHP Framework
