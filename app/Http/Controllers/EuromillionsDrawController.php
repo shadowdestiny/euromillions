@@ -26,7 +26,6 @@ class EuromillionsDrawController extends Controller
             });
 
             if ($euromillions){
-                //return response()->json($euromillions, 201);
 
                 $results = [
                     $euromillions->result_regular_number_one,
