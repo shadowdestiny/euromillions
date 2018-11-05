@@ -82,6 +82,12 @@ php -S localhost:8085 -t public
 5) Actualmente "remember Cache" se realiza desde la clase 
 ```
 EuromillionsDrawController
+
+$euromillions = Cache::remember('usersTable', 1, function() {
+    return EuromillionsDraw::all()->first();
+});
+
+## por cada minuto
 ```
 
 [Cache](/images/cache.png)
