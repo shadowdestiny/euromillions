@@ -84,7 +84,7 @@ php -S localhost:8085 -t public
 EuromillionsDrawController
 ```
 
-(/images/cache.png)
+[Cache](/images/cache.png)
 
 
 ## Lumen PHP Framework
